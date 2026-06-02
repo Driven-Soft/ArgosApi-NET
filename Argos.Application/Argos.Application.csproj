@@ -7,13 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DTOs\" />
-      <Folder Include="Interfaces\Repositories\" />
-      <Folder Include="Services\Implementations\" />
-      <Folder Include="Services\Interfaces\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Argos.Domain\Argos.Domain.csproj" />
     </ItemGroup>
 
