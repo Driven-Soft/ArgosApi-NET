@@ -17,10 +17,10 @@ public class AlertaConfiguration : IEntityTypeConfiguration<Alerta>
         builder.Property(x => x.Ativo).IsRequired();
         builder.Property(x => x.DataCriacao).IsRequired();
 
-        // ZonaRisco obrigatória → Restrict (não cascateia de zona, §4).
+        // ZonaRisco obrigatória → Restrict (não cascateia de zona).
         builder.HasOne(x => x.ZonaRisco).WithMany()
             .HasForeignKey(x => x.ZonaRiscoId).OnDelete(DeleteBehavior.Restrict);
-        // Autor opcional → SetNull ao apagar o usuário (§4).
+        // Autor opcional → SetNull ao apagar o usuário.
         builder.HasOne(x => x.UsuarioCriador).WithMany()
             .HasForeignKey(x => x.UsuarioCriadorId).OnDelete(DeleteBehavior.SetNull);
 

@@ -6,7 +6,7 @@ namespace Argos.Infrastructure.Repositories;
 
 /// <summary>
 /// Implementação genérica do <see cref="IRepository{T}"/> (chave <see cref="int"/>),
-/// idêntica ao padrão Fidelis. Leituras simples usam <c>AsNoTracking</c>;
+/// Leituras simples usam <c>AsNoTracking</c>;
 /// <see cref="GetById"/> rastreia a entidade para que o serviço a mute e salve.
 /// </summary>
 public class Repository<T>(ArgosContext context) : IRepository<T> where T : class

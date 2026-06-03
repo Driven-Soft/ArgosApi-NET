@@ -23,4 +23,10 @@ public class ArgosContext(DbContextOptions<ArgosContext> options) : DbContext(op
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ArgosContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder.Properties<bool>().HaveColumnType("NUMBER(1)");
+        base.ConfigureConventions(configurationBuilder);
+    }
 }
