@@ -372,3 +372,7 @@ curl -X POST http://localhost:5084/ocorrencias/1/comentarios \
 ### Repositório no GitHub
 
 - https://github.com/Driven-Soft/ArgosApi-NET
+
+### Vídeo de demonstração da solução completa:
+
+- https://youtu.be/kaNmxGSJEzg
