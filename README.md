@@ -361,6 +361,8 @@ curl -X POST http://localhost:5084/ocorrencias/1/comentarios \
 
 > Em caso de erro, a API retorna **ProblemDetails (RFC 7807)** com `title` e `detail` (este último apenas em ambiente de desenvolvimento).
 
+<hr>
+
 ## Equipe — Driven Soft
 
 | Nome | RM |
@@ -375,4 +377,8 @@ curl -X POST http://localhost:5084/ocorrencias/1/comentarios \
 
 ### Vídeo de demonstração da solução completa:
 
-- https://youtu.be/kaNmxGSJEzg
+- https://www.youtube.com/watch?v=kaNmxGSJEzg
+
+### Vídeo Pitch da solução Argos:
+
+- https://www.youtube.com/watch?v=whiMf7yaOw0
