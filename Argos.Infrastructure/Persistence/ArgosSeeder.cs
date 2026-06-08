@@ -128,8 +128,11 @@ public static class ArgosSeeder
 
     private static async Task SeedOcorrenciasAsync(ArgosContext context, DateTime agora)
     {
-        var tipoIdPorChave = await context.TiposOcorrencia
-            .ToDictionaryAsync(t => t.Chave, t => t.Id);
+        var tipoIdPorChave = (await context.TiposOcorrencia
+                .Select(t => new { t.Chave, t.Id })
+                .ToListAsync())
+            .GroupBy(t => t.Chave)
+            .ToDictionary(g => g.Key, g => g.First().Id);
         var cidadaoId = await context.Usuarios
             .Where(u => u.Email == EmailCidadao)
             .Select(u => u.Id)
@@ -174,10 +177,16 @@ public static class ArgosSeeder
 
     private static async Task SeedComentariosAsync(ArgosContext context, DateTime agora)
     {
-        var ocorrenciaIdPorTitulo = await context.Ocorrencias
-            .ToDictionaryAsync(o => o.Titulo, o => o.Id);
-        var usuarioIdPorEmail = await context.Usuarios
-            .ToDictionaryAsync(u => u.Email, u => u.Id);
+        var ocorrenciaIdPorTitulo = (await context.Ocorrencias
+                .Select(o => new { o.Titulo, o.Id })
+                .ToListAsync())
+            .GroupBy(o => o.Titulo)
+            .ToDictionary(g => g.Key, g => g.First().Id);
+        var usuarioIdPorEmail = (await context.Usuarios
+                .Select(u => new { u.Email, u.Id })
+                .ToListAsync())
+            .GroupBy(u => u.Email)
+            .ToDictionary(g => g.Key, g => g.First().Id);
 
         // (título da ocorrência, email do autor, mensagem, offset em minutos)
         var comentarios = new[]
@@ -210,8 +219,11 @@ public static class ArgosSeeder
 
     private static async Task SeedAlertasAsync(ArgosContext context, DateTime agora)
     {
-        var zonaIdPorNome = await context.ZonasRisco
-            .ToDictionaryAsync(z => z.Nome, z => z.Id);
+        var zonaIdPorNome = (await context.ZonasRisco
+                .Select(z => new { z.Nome, z.Id })
+                .ToListAsync())
+            .GroupBy(z => z.Nome)
+            .ToDictionary(g => g.Key, g => g.First().Id);
         var defesaCivilId = await context.Usuarios
             .Where(u => u.Email == EmailDefesaCivil)
             .Select(u => u.Id)
